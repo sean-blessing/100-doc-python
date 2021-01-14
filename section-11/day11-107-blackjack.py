@@ -1,10 +1,4 @@
 ############### Blackjack Project #####################
-
-#Difficulty Normal 😎: Use all Hints below to complete the project.
-#Difficulty Hard 🤔: Use only Hints 1, 2, 3 to complete the project.
-#Difficulty Extra Hard 😭: Only use Hints 1 & 2 to complete the project.
-#Difficulty Expert 🤯: Only use Hint 1 to complete the project.
-
 ############### Our Blackjack House Rules #####################
 
 ## The deck is unlimited in size. 
@@ -68,6 +62,8 @@ def is_game_over():
         return True
     elif cpu_score > player_score:
         # cpu wins
+        if cpu_score==21:
+            print("Blackjack!!!")
         print(f"Computer wins:  {cpu_score} - {player_score}")
         return True
     elif player_score > cpu_score:
@@ -81,7 +77,7 @@ def is_game_over():
         return False
 
 #draw 2 cards for each player to start
-for n in range (0,2):
+for _ in range (2):
     player_cards.append(draw())
     cpu_cards.append(draw())
 
@@ -102,6 +98,8 @@ while choice =="y" and not game_over:
         cpu_score = 0
         while not bust:
             cpu_score = score_hand(cpu_cards)
+            player_score = score_hand(player_cards)
+            #print(f"* debug * cpu_score={cpu_score}, player_score={player_score}")
             if cpu_score > 21:
                 bust = True
             elif cpu_score < 17:
@@ -113,86 +111,3 @@ while choice =="y" and not game_over:
     if game_over:
         display_final_summary()
 print("Bye")
-
-
-
-
-
-
-
-#         #draw one player card, evaluate if bust
-#         while not game_over:
-#             player_cards.append(draw())
-#             game_over = is_game_over()
-#     # cpu draws only if player ! bust && cpu total < 17
-#     if score_hand(player_cards) <= 21 and score_hand(cpu_cards)<17:
-#         cpu_cards.append(draw())
-#     # 2. display summary:  show all player cards & score, first cpu card
-#     #    - print 'your cards: [c1, c2], current score: {score}'
-#     #    - display 'computer's first card: [comp1]'
-#     display_summary()
-#     # 3. Evaluate hands / determine winner:
-#     game_over = is_game_over()
-#     # 3. "type 'y' to get another card, 'n' to pass:"
-#     #    - 'n': display "Your final hand: [....], final score: {score}"
-#     #                   "Computer's final hand: [....]", final score: {cpu_score}"
-#     #    - 'y': draw another card, display summary, and go back to step 3.
-#     if not game_over:
-#         choice = input("Type 'y' to get another card, 'n' to pass: ")
-#         # if player passes, dealer must continue to draw until bust or win
-#         if choice=="n":
-#             while score_hand(cpu_cards) and not game_over<=21:
-#                 cpu_cards.append(draw())
-#                 game_over = is_game_over()
-#     else:
-#         #print end of game summary
-#         print(f"Your final hand...")
-#         print(f"Computer's final hand...")
-# print("bye")
-
-
-
-
-
-##################### Hints #####################
-
-#Hint 1: Go to this website and try out the Blackjack game: 
-#   https://games.washingtonpost.com/games/blackjack/
-#Then try out the completed Blackjack project here: 
-#   http://blackjack-final.appbrewery.repl.run
-
-#Hint 2: Read this breakdown of program requirements: 
-#   http://listmoz.com/view/6h34DJpvJBFVRlZfJvxF
-#Then try to create your own flowchart for the program.
-
-#Hint 3: Download and read this flow chart I've created: 
-#   https://drive.google.com/uc?export=download&id=1rDkiHCrhaf9eX7u7yjM1qwSuyEk-rPnt
-
-#Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
-#11 is the Ace.
-#cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
-#Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
-#user_cards = []
-#computer_cards = []
-
-#Hint 6: Create a function called calculate_score() that takes a List of cards as input 
-#and returns the score. 
-#Look up the sum() function to help you do this.
-
-#Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
-
-#Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
-
-#Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
-
-#Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
-
-#Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
-
-#Hint 12: Once the user is done, it's time to let the computer play. The computer should keep drawing cards as long as it has a score less than 17.
-
-#Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
-
-#Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
-
