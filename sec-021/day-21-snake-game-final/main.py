@@ -34,6 +34,11 @@ while game_is_on:
         scoreboard.increase_score()
         print(f"nom nom nom!  score is {scoreboard.score}")
 
+    #detect wall collision
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        game_is_on = False
+        print("hit the wall... game over!")
+        scoreboard.game_over()
 
 
 screen.exitonclick()

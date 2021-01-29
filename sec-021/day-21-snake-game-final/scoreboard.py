@@ -14,7 +14,7 @@ class Scoreboard(Turtle):
         self.hideturtle()
         # hide pen then move score to top of screen
         self.penup()
-        self.goto(0, 260)
+        self.goto(0, 270)
         self.update_score()
 
     def increase_score(self):
@@ -24,3 +24,7 @@ class Scoreboard(Turtle):
 
     def update_score(self):
         self.write(f"score: {self.score}", align=ALIGNMENT, font=FONT)
+
+    def game_over(self):
+        self.goto(0, 0)
+        self.write("GAME OVER", align=ALIGNMENT, font=FONT)
