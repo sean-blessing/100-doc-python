@@ -44,3 +44,36 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    # instructor's solution was WAY easier!!!
+    def append_seg(self):
+        # add segment to snake
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        # position the new new segment at end of the snake
+        # detect direction of last segment and add new one behind
+        last_idx = len(self.segments) - 1
+        last_seg = self.segments[last_idx]
+        # get position of last_seg
+        seg_x = last_seg.xcor()
+        seg_y = last_seg.ycor()
+        if last_seg.heading() == LEFT:
+            # add new segment to right
+            # get position of last segment and add 20 to x
+            seg_x = seg_x + 20
+        elif last_seg.heading() == RIGHT:
+            # add new segment to left
+            # get position of last segment and subtract 20 from x
+            seg_x = seg_x - 20
+        elif last_seg.heading() == UP:
+            # add new segment below
+            # get position of last segment and subtract 20 from y
+            seg_y = seg_y - 20
+        elif last_seg.heading() == DOWN:
+            # add new segment above
+            # get position of last segment and add 20 to y
+            seg_y = seg_y + 20
+        new_segment.setx(seg_x)
+        new_segment.sety(seg_y)
+        self.segments.append(new_segment)
