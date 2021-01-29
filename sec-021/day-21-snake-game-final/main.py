@@ -30,8 +30,10 @@ while game_is_on:
 
     #detect collision with food
     if snake.head.distance(food) < 15:
-        print("nom nom nom")
         food.refresh()
+        scoreboard.increase_score()
+        print(f"nom nom nom!  score is {scoreboard.score}")
+
 
 
 screen.exitonclick()
