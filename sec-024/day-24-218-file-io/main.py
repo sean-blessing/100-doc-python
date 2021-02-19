@@ -5,7 +5,7 @@
 # file.close()
 
 # similar to try-with-resources. Auto closes file
-with open("my_file.txt") as file:
+with open("/Users/snble/Desktop/my_file.txt") as file:
     contents = file.read()
     print(contents)
 
@@ -18,6 +18,6 @@ with open("my_file.txt") as file:
 #     print(contents)
 
 # create a new file
-with open("new_file.txt", mode="w") as file:
-    file.write("\nNew text.")
+# with open("new_file.txt", mode="w") as file:
+#     file.write("\nNew text.")
 
