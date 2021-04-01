@@ -42,11 +42,15 @@ while len(correct_guesses) < 50:
     elif guess_lower == "exit":
         # save states_not_guessed.csv
         states_not_guessed = []
-        for state in states_list:
-            if state not in correct_guesses:
-                states_not_guessed.append(state)
+        # day 26 list comprehension challenge - cut down this code with list comp
+        states_not_guessed = [state for state in states_list if state not in correct_guesses]
         not_guessed_data = pandas.DataFrame(states_not_guessed)
         not_guessed_data.to_csv("states_not_guessed.csv")
+        # for state in states_list:
+        #     if state not in correct_guesses:
+        #         states_not_guessed.append(state)
+        # not_guessed_data = pandas.DataFrame(states_not_guessed)
+        # not_guessed_data.to_csv("states_not_guessed.csv")
         break
 
 
